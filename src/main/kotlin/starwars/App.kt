@@ -21,7 +21,7 @@ class App {
 fun main(args: Array<String>) {
     println(App().greeting)
 
-    embeddedServer(Netty, 8080) {
+    embeddedServer(Netty, System.getenv("PORT")?.let{it.toInt()} ?: 8080) {
         routing {
             get("/") {
                 call.respondText("Starwars", ContentType.Text.Html)
